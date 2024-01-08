@@ -11,7 +11,7 @@ const Body = () => {
       return restaurantList;
     }
     const filterData = MenuList.filter((menuItem) => {
-      if (menuItem.info.name.includes(inputData)) {
+      if (menuItem.info.name.toUpperCase().includes(inputData.toUpperCase())) {
         return menuItem;
       }
     });
@@ -22,6 +22,7 @@ const Body = () => {
     <>
       <div className="search-container">
         <input
+          className="search-input"
           type="text"
           placeholder="search"
           value={inputValue}
@@ -40,6 +41,7 @@ const Body = () => {
       </div>
 
       <div className="restraunt-container">
+        <h1 className="heading">MenuList</h1>
         {restaurantMenu.map((ele) => {
           return <RestrauntCard {...ele.info} key={ele.info.id} />;
         })}
