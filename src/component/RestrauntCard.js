@@ -1,7 +1,7 @@
 import { baseURL } from "../config";
 
 const RestrauntCard = ({
-  areaName,
+  name,
   cuisines,
   avgRating,
   cloudinaryImageId,
@@ -10,7 +10,7 @@ const RestrauntCard = ({
     <>
       <div className="card">
         <img src={baseURL + cloudinaryImageId} />
-        <h2>{areaName}</h2>
+        <h2>{name}</h2>
         <h3>{cuisines.join(", ")} </h3>
         <h4>{avgRating} stars</h4>
       </div>
