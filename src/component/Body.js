@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { restaurantList } from "../config";
 import RestrauntCard from "./RestrauntCard";
 
 const Body = () => {
   const [inputValue, setInputValue] = useState("");
   const [restaurantMenu, setRestaurantMenu] = useState(restaurantList);
+
+  async function getRestaurant() {
+    const data = await fetch(
+      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING`
+    );
+    const jsonData = await data.json();
+    console.log(jsonData);
+    setRestaurantMenu(
+      jsonData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+  }
+  useEffect(() => {
+    getRestaurant();
+  }, []);
 
   function filterData(inputData, MenuList) {
     if (inputData == "") {
@@ -32,7 +47,7 @@ const Body = () => {
         />
         <button
           onClick={() => {
-            const data = filterData(inputValue, restaurantMenu);
+            const data = filterData(inputValue, restaurantList);
             setRestaurantMenu(data);
           }}
         >
