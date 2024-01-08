@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Title = () => {
   return (
     <a href="/">
@@ -11,6 +13,8 @@ const Title = () => {
 };
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   return (
     <>
       <div className="header">
@@ -23,6 +27,16 @@ const Header = () => {
             <li>Cart</li>
           </ul>
         </div>
+
+        {isLoggedIn ? (
+          <button className="btn" onClick={() => setIsLoggedIn(false)}>
+            Logout
+          </button>
+        ) : (
+          <button className="btn" onClick={() => setIsLoggedIn(true)}>
+            Login
+          </button>
+        )}
       </div>
     </>
   );
