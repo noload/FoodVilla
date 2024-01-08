@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { restaurantList } from "../config";
 import RestrauntCard from "./RestrauntCard";
+import { Shimmer } from "./Shimmer";
 
 const Body = () => {
   const [inputValue, setInputValue] = useState("");
-  const [restaurantMenu, setRestaurantMenu] = useState(restaurantList);
-
+  const [restaurantMenu, setRestaurantMenu] = useState([]);
+  const [allRestaurantMenu, setAllRestaurantMenu] = useState([]);
   async function getRestaurant() {
     const data = await fetch(
       `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING`
@@ -16,20 +17,25 @@ const Body = () => {
       jsonData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+    setAllRestaurantMenu(
+      jsonData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   }
   useEffect(() => {
     getRestaurant();
   }, []);
 
-  function filterData(inputData, MenuList) {
+  function filterData(inputData, allRestaurantMenu) {
     if (inputData == "") {
-      return restaurantList;
+      return allRestaurantMenu;
     }
-    const filterData = MenuList.filter((menuItem) => {
+    const filterData = allRestaurantMenu.filter((menuItem) => {
       if (menuItem.info.name.toUpperCase().includes(inputData.toUpperCase())) {
         return menuItem;
       }
     });
+
     return filterData;
   }
 
@@ -47,7 +53,7 @@ const Body = () => {
         />
         <button
           onClick={() => {
-            const data = filterData(inputValue, restaurantList);
+            const data = filterData(inputValue, allRestaurantMenu);
             setRestaurantMenu(data);
           }}
         >
@@ -57,9 +63,13 @@ const Body = () => {
 
       <div className="restraunt-container">
         <h1 className="heading">MenuList</h1>
-        {restaurantMenu.map((ele) => {
-          return <RestrauntCard {...ele.info} key={ele.info.id} />;
-        })}
+        {restaurantMenu.length == 0 ? (
+          <Shimmer />
+        ) : (
+          restaurantMenu.map((ele) => {
+            return <RestrauntCard {...ele.info} key={ele.info.id} />;
+          })
+        )}
       </div>
     </>
   );
