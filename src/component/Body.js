@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { restaurantList } from "../config";
 import RestrauntCard from "./RestrauntCard";
 import { Shimmer } from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [inputValue, setInputValue] = useState("");
@@ -18,7 +19,7 @@ const Body = () => {
         ?.restaurants
     );
     setAllRestaurantMenu(
-      jsonData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      jsonData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   }
@@ -68,7 +69,11 @@ const Body = () => {
           <Shimmer />
         ) : (
           restaurantMenu.map((ele) => {
-            return <RestrauntCard {...ele.info} key={ele.info.id} />;
+            return (
+              <Link to={"/restaurant/" + ele.info.id} key={ele.info.id}>
+                <RestrauntCard {...ele.info} />;
+              </Link>
+            );
           })
         )}
       </div>

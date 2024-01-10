@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Title = () => {
   return (
-    <a href="/">
+    <Link to="/">
       <img
         className="logo"
         alt="logo"
         src="https://www.graphicdesk.in/images/client/logo8.png"
       />
-    </a>
+    </Link>
   );
 };
 
@@ -21,9 +22,17 @@ const Header = () => {
         <Title />
         <div className="nav-item">
           <ul>
-            <li className="active">Home</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li className="active">
+              <Link to="/">Home </Link>
+            </li>
+
+            <li>
+              <Link to="/about">About </Link>
+            </li>
+
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
             <li>Cart</li>
           </ul>
         </div>
