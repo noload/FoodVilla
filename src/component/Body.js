@@ -14,7 +14,7 @@ const Body = () => {
     const jsonData = await data.json();
     console.log(jsonData);
     setRestaurantMenu(
-      jsonData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      jsonData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setAllRestaurantMenu(
@@ -63,7 +63,8 @@ const Body = () => {
 
       <div className="restraunt-container">
         <h1 className="heading">MenuList</h1>
-        {restaurantMenu.length == 0 ? (
+
+        {restaurantMenu.length === 0 ? (
           <Shimmer />
         ) : (
           restaurantMenu.map((ele) => {
