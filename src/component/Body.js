@@ -3,18 +3,18 @@ import RestrauntCard from "./RestrauntCard";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
-import { restaurantList } from "../config";
 import useRestaurantList from "../utils/useRestaurantList";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [inputValue, setInputValue] = useState("");
-  const [restaurantMenu, allRestaurantMenu] = useRestaurantList();
+  const [restaurantMenu, allRestaurantMenu, setRestaurantMenu] =
+    useRestaurantList();
 
-  const offline = false;
-  if (offline) {
-    return <h1> Check Your Internet Connection</h1>;
+  const isOnline = useOnline();
+  if (!isOnline) {
+    return <h1>Yor are disconnected</h1>;
   }
-  
   return (
     <>
       <div className="search-container">

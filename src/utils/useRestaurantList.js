@@ -22,7 +22,7 @@ const useRestaurantList = () => {
     getRestaurant();
   }, []);
 
-  return [restaurantMenu, allRestaurantMenu];
+  return [restaurantMenu, allRestaurantMenu, setRestaurantMenu];
 };
 
 export default useRestaurantList;
