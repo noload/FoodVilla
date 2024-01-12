@@ -27,9 +27,9 @@
 }
 .nav-item > ul > li:hover {
   transform: scale(1.06);
-
   transition: 0.2s;
 }
+
 .logo {
   width: 100px;
   margin-left: 50px;

@@ -1,45 +1,20 @@
 import { useEffect, useState } from "react";
-import { restaurantList } from "../config";
 import RestrauntCard from "./RestrauntCard";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import { restaurantList } from "../config";
+import useRestaurantList from "../utils/useRestaurantList";
 
 const Body = () => {
   const [inputValue, setInputValue] = useState("");
-  const [restaurantMenu, setRestaurantMenu] = useState([]);
-  const [allRestaurantMenu, setAllRestaurantMenu] = useState([]);
-  async function getRestaurant() {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING`
-    );
-    const jsonData = await data.json();
-    console.log(jsonData);
-    setRestaurantMenu(
-      jsonData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    setAllRestaurantMenu(
-      jsonData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
+  const [restaurantMenu, allRestaurantMenu] = useRestaurantList();
+
+  const offline = false;
+  if (offline) {
+    return <h1> Check Your Internet Connection</h1>;
   }
-  useEffect(() => {
-    getRestaurant();
-  }, []);
-
-  function filterData(inputData, allRestaurantMenu) {
-    if (inputData == "") {
-      return allRestaurantMenu;
-    }
-    const filterData = allRestaurantMenu.filter((menuItem) => {
-      if (menuItem.info.name.toUpperCase().includes(inputData.toUpperCase())) {
-        return menuItem;
-      }
-    });
-
-    return filterData;
-  }
-
+  
   return (
     <>
       <div className="search-container">
