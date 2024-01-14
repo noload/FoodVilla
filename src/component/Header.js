@@ -5,7 +5,7 @@ const Title = () => {
   return (
     <Link to="/">
       <img
-        className="logo"
+        className="h-28 px-2"
         alt="logo"
         src="https://www.graphicdesk.in/images/client/logo8.png"
       />
@@ -18,22 +18,26 @@ const Header = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="flex justify-between bg-red-300 shadow-lg">
         <Title />
-        <div className="nav-item">
-          <ul>
-            <li className="active">
+        <div className="">
+          <ul className="flex py-10">
+            <li className="px-2">
               <Link to="/">Home </Link>
             </li>
 
-            <li>
+            <li className="px-2">
               <Link to="/about">About </Link>
             </li>
 
-            <li>
+            <li className="px-2">
               <Link to="/contact">Contact</Link>
             </li>
-            <li>Cart</li>
+            <li className="px-2">Cart</li>
+
+            <li className="px-2">
+              <Link to="/instamart">Instamart </Link>
+            </li>
           </ul>
         </div>
 
