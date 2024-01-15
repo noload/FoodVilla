@@ -3,7 +3,8 @@ import { useState } from "react";
 const Section = ({ title, desc, isVisible, setIsVisible }) => {
   return (
     <>
-      <div className="border-2 border-red-300 p-5 m-2 text-justify flex flex-col justify-center items-center ">
+    <div>
+      <div className="border-2 border-red-300 p-5 m-2 text-justify flex flex-col justify-center items-center transition duration-500 ">
         <h1 className="text-xl font-semibold p-2 text-center text-blue-800">
           {title}
         </h1>
@@ -24,7 +25,8 @@ const Section = ({ title, desc, isVisible, setIsVisible }) => {
           </button>
         )}
 
-        {isVisible && <p>{desc}</p>}
+        {isVisible && <p className="transition ease-in-out duration-1000 translate-x-5 ">{desc}</p>}
+      </div>
       </div>
     </>
   );

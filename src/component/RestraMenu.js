@@ -24,7 +24,9 @@ const RestraMenu = () => {
           <h2>Rating :{data.avgRating} stars</h2>
           <h2>Address : {data.city}</h2>
           <div className="div-btn">
-            <button className="btn order-btn">Order Now</button>
+            <button className="w-1/3  p-1 px-6 margin-2 rounded-lg  bg-red-500 transition ease-in-out hover:bg-red-600 hover:rounded-none  duration-300">
+              Order Now
+            </button>
           </div>
         </div>
       </div>
