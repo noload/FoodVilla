@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import userContext from "../utils/UserContext";
+
+import UserContext from "../utils/UserContext";
 
 const Title = () => {
   return (
@@ -16,9 +17,7 @@ const Title = () => {
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const { user } = useContext(userContext);
-
+  const { user } = useContext(UserContext);
   return (
     <>
       <div className="flex w-full h-28 items-center justify-between bg-red-300 shadow-lg  text-white text-lg font-semibold">

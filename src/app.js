@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./component/Header";
 import Body from "./component/Body";
@@ -9,7 +9,6 @@ import Error from "./component/Error";
 import Contact from "./component/Contact.js";
 import RestraMenu from "./component/RestraMenu.js";
 import { Shimmer } from "./component/Shimmer.js";
-
 const Instamart = lazy(() => import("./component/Instamart.js"));
 
 const AppLayout = () => {
