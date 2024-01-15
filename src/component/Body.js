@@ -19,8 +19,8 @@ const Body = () => {
     <>
       <div className="bg-red-200 py-8 flex justify-center ">
         <input
-          className=" w-1/2 h-10 block px-3 py-2 bg-white border border-slate-300 text-lg shadow-sm placeholder-slate-400
-          focus:outline-none focus:border-red-500 
+          className=" w-1/2 h-10 block px-3 py-2 bg-white  text-lg shadow-sm placeholder-slate-400
+          focus:outline-none border border-red-500 border-r-0 focus:border-2
       
         "
           type="text"
@@ -31,7 +31,7 @@ const Body = () => {
           }}
         />
         <button
-          className="	border w-40 text-lg border-red-400 h-10 rounded-r-lg hover:bg-red-400 active:bg-red-400 focus:outline-none focus:ring focus:ring-red-300"
+          className="w-40 text-lg border border-red-500 border-l-0 h-10 focus:outline-none bg-red-400 transition ease-in-out duration-500  hover:bg-red-600 "
           onClick={() => {
             const data = filterData(inputValue, allRestaurantMenu);
             setRestaurantMenu(data);
