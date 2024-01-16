@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { Menu_detail_Api } from "../config";
 
-const useRestaurant = (resId) => {
-  const [data, setData] = useState({});
+const useMenuItems = (resId) => {
+  const [menuItem, setMenuItem] = useState([]);
 
   async function getMenuDetails() {
     const RestaurantInfoURL = `${Menu_detail_Api}restaurantId=${resId}`;
     const data = await fetch(RestaurantInfoURL);
     const jsonData = await data.json();
+    const menuItems =
+      jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards;
 
-    setData(jsonData.data?.cards[0]?.card?.card?.info);
+    setMenuItem(menuItems);
   }
 
   useEffect(() => {
     getMenuDetails();
   }, []);
 
-  return data;
+  return menuItem;
 };
 
-export default useRestaurant;
+export default useMenuItems;

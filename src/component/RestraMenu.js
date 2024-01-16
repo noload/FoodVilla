@@ -1,42 +1,60 @@
 import { useParams } from "react-router-dom";
 import { baseURL } from "../config";
 import useRestaurant from "../utils/useRestraunt";
-import { addItem } from "../utils/cartSlice";
-import { useDispatch } from "react-redux";
+
+import useMenuItems from "../utils/useMenuItems";
+import { Shimmer } from "./Shimmer";
+import MenuCard from "./MenuCard";
 
 const RestraMenu = () => {
   const { id } = useParams();
 
-  const dispatch = useDispatch();
-  const data = useRestaurant(id);
+  const { cloudinaryImageId, name, avgRating, city } = (data =
+    useRestaurant(id));
 
-  const handleAddItem = () => {
-    dispatch(addItem("banana"));
-  };
+  const menuItems = useMenuItems(id);
 
   return (
     <>
-      <div className="flex w-11/12 h-[60vh] py-20 px-3 m-auto gap-12">
-        <div className="w-5/12 h-80 p-6  shadow-2xl justify-center rounded-2xl">
+      <div className="flex flex-col w-full h-auto py-20 px-3 gap-12">
+        <div className="flex w-full h-auto p-5  shadow-2xl justify-center rounded-2xl">
           <img
-            className="w-full h-full"
-            src={baseURL + data.cloudinaryImageId}
+            className="w-2/4 h-64 rounded-lg mx-auto"
+            src={baseURL + cloudinaryImageId}
           />
+          <div className="flex flex-col p mx-auto h-2/3">
+            <h1 className="text-red-500 text-center text-3xl font-bold my-2">
+              Restaurant Details
+            </h1>
+            <h2 className="text-lg p-1 text-red-300">RestaurantId : {id}</h2>
+            <h2 className="text-lg p-1 text-red-300">Name : {name}</h2>
+            <h2 className="text-lg p-1 text-red-300">
+              Rating :{avgRating} stars
+            </h2>
+            <h2 className="text-lg p-1 text-red-300">Address : {city}</h2>
+          </div>
         </div>
-        <div className="flex flex-col p-7 w-5/12  gap-5 h-80 shadow-2xl justify-center rounded-2xl">
-          <h1>Restaurant Details</h1>
-          <h2>RestaurantId : {data.id}</h2>
-          <h2>Name : {data.name}</h2>
-
-          <h2>Rating :{data.avgRating} stars</h2>
-          <h2>Address : {data.city}</h2>
-          <div className="div-btn">
-            <button
-              className="w-1/3  p-1 px-6 margin-2 rounded-lg  bg-red-500 transition ease-in-out hover:bg-red-600 hover:rounded-none  duration-300"
-              onClick={() => handleAddItem()}
-            >
-              addItem
-            </button>
+        <div className="flex flex-col p-2 gap-4 w-full h-auto shadow-2xl justify-start rounded-2xl">
+          <div className=" flex w-full justify-between border flex-col border-red-300">
+            <h2 className="text-red-500 text-center text-2xl font-bold">
+              Menu Items
+            </h2>
+            <ul className="flex flex-wrap justify-around">
+              {menuItems.map((item) => {
+                const itemsCard = item.card.card.itemCards;
+                if (itemsCard) {
+                  return itemsCard.map((info) => {
+                    const information = info.card.info;
+                    console.log(information);
+                    return (
+                      <li className="w-50 h-28 m-1 p-1">
+                        <MenuCard info={information} key={information.id} />
+                      </li>
+                    );
+                  });
+                }
+              })}
+            </ul>
           </div>
         </div>
       </div>

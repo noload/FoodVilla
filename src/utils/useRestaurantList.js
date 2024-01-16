@@ -8,7 +8,7 @@ const useRestaurantList = () => {
   async function getRestaurant() {
     const data = await fetch(restaurantList);
     const jsonData = await data.json();
-    console.log(jsonData);
+
     setRestaurantMenu(
       jsonData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
