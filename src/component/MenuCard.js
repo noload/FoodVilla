@@ -10,6 +10,7 @@ const MenuCard = ({ info }) => {
   const dispatch = useDispatch();
   let length = 20;
   const handleAddItem = (info) => {
+    alert("item added");
     dispatch(addItem(info));
   };
 

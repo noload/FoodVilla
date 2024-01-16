@@ -16,8 +16,11 @@ const RestraMenu = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full h-auto py-20 px-3 gap-12">
-        <div className="flex w-full h-auto p-5  shadow-2xl justify-center rounded-2xl">
+      <div key={1} className="flex flex-col w-full h-auto py-20 px-3 gap-12">
+        <div
+          key={3893}
+          className="flex w-full h-auto p-5  shadow-2xl justify-center rounded-2xl"
+        >
           <img
             className="w-2/4 h-64 rounded-lg mx-auto"
             src={baseURL + cloudinaryImageId}
@@ -46,8 +49,8 @@ const RestraMenu = () => {
                   return itemsCard.map((info) => {
                     const information = info.card.info;
                     return (
-                      <li className="w-50 h-28 m-1 p-1">
-                        <MenuCard info={information} key={information.id} />
+                      <li className="w-50 h-28 m-1 p-1" key={information.id}>
+                        <MenuCard info={information} />
                       </li>
                     );
                   });

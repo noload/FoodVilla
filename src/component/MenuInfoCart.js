@@ -1,14 +1,31 @@
+import { useDispatch } from "react-redux";
 import { baseURL } from "../config";
+import { removeItem } from "../utils/cartSlice";
 
-const MenuInfoCart = ({ id, name, category, imageId }) => {
+const MenuInfoCart = ({ id, name, category, imageId, price, description }) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveCart = (menuId) => {
+    dispatch(removeItem(menuId));
+  };
+
   return (
     <>
-      <div className="rounded-3xl w-64 h-auto overflow-hidden my-4 flex justify-center flex-col p-5 shadow-2xl  hover:scale-110 transition:all  ease-out duration-700">
-        <img className="w-full h-56 rounded-xl" src={baseURL + imageId} />
+      <div className="rounded-3xl w-80 h-auto  overflow-hidden my-2 flex justify-center flex-col p-5 shadow-2xl  hover:scale-105 transition:all  ease-out duration-700">
+        <img className="w-full h-50 rounded-xl" src={baseURL + imageId} />
         <h2>MenuId : {id}</h2>
-        <h2 className="text-lg font-bold my-3">{name}</h2>
-        <h3>category : {category} </h3>
-        <h4></h4>
+        <h2 className="text-lg font-bold my-1">{name}</h2>
+        <h3>Category : {category} </h3>
+        <h4>Prize {price}</h4>
+        <h1>Description : {(description = description.substring(0, 80))}</h1>
+        <button
+          className="w-4/6 h-auto px-5 py-2 my-5 mx-auto bg-red-500 rounded-full"
+          onClick={() => {
+            handleRemoveCart(id);
+          }}
+        >
+          remove
+        </button>
       </div>
     </>
   );

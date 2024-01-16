@@ -13,7 +13,7 @@ const Body = () => {
 
   const isOnline = useOnline();
   if (!isOnline) {
-    return <h1>  You are disconnected </h1>;
+    return <h1> You are disconnected </h1>;
   }
   return (
     <>
@@ -42,8 +42,8 @@ const Body = () => {
       </div>
 
       <div className="relative p-20 flex flex-wrap justify-evenly gap-x-2">
-        <h1 className="absolute top-0 left-1/2 text-5xl text-red-600 font-bold">
-          MenuList
+        <h1 className="absolute top-0 text-center m-2 text-5xl text-red-600 font-bold">
+          All Restaurants
         </h1>
 
         {restaurantMenu.length === 0 ? (
