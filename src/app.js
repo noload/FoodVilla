@@ -10,13 +10,17 @@ import Contact from "./component/Contact.js";
 import RestraMenu from "./component/RestraMenu.js";
 import { Shimmer } from "./component/Shimmer.js";
 const Instamart = lazy(() => import("./component/Instamart.js"));
+import { Provider } from "react-redux";
+import store from "./utils/store.js";
 
 const AppLayout = () => {
   return (
     <>
+    <Provider store={store}>
       <Header />
       <Outlet />
       <Footer />
+      </Provider>
     </>
   );
 };

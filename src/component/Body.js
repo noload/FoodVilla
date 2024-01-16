@@ -13,7 +13,7 @@ const Body = () => {
 
   const isOnline = useOnline();
   if (!isOnline) {
-    return <h1> 🔴 You are disconnected </h1>;
+    return <h1>  You are disconnected </h1>;
   }
   return (
     <>

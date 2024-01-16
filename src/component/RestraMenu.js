@@ -1,11 +1,18 @@
 import { useParams } from "react-router-dom";
 import { baseURL } from "../config";
 import useRestaurant from "../utils/useRestraunt";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestraMenu = () => {
   const { id } = useParams();
 
+  const dispatch = useDispatch();
   const data = useRestaurant(id);
+
+  const handleAddItem = () => {
+    dispatch(addItem("banana"));
+  };
 
   return (
     <>
@@ -24,8 +31,11 @@ const RestraMenu = () => {
           <h2>Rating :{data.avgRating} stars</h2>
           <h2>Address : {data.city}</h2>
           <div className="div-btn">
-            <button className="w-1/3  p-1 px-6 margin-2 rounded-lg  bg-red-500 transition ease-in-out hover:bg-red-600 hover:rounded-none  duration-300">
-              Order Now
+            <button
+              className="w-1/3  p-1 px-6 margin-2 rounded-lg  bg-red-500 transition ease-in-out hover:bg-red-600 hover:rounded-none  duration-300"
+              onClick={() => handleAddItem()}
+            >
+              addItem
             </button>
           </div>
         </div>
