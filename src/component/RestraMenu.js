@@ -45,7 +45,6 @@ const RestraMenu = () => {
                 if (itemsCard) {
                   return itemsCard.map((info) => {
                     const information = info.card.info;
-                    console.log(information);
                     return (
                       <li className="w-50 h-28 m-1 p-1">
                         <MenuCard info={information} key={information.id} />

@@ -9,9 +9,10 @@ import { addItem } from "../utils/cartSlice";
 const MenuCard = ({ info }) => {
   const dispatch = useDispatch();
   let length = 20;
-  const handleAddItem = () => {
-    dispatch(addItem());
+  const handleAddItem = (info) => {
+    dispatch(addItem(info));
   };
+
   let { id, name, category, imageId } = info;
   return (
     <>
