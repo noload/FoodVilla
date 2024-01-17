@@ -19,6 +19,7 @@ const Body = () => {
     <>
       <div className="bg-red-200 py-8 flex justify-center ">
         <input
+          data-testid="searchInput"
           className=" w-1/2 h-10 block px-3 py-2 bg-white  text-lg shadow-sm placeholder-slate-400
           focus:outline-none border border-red-500 border-r-0 focus:border-2
       
@@ -31,6 +32,7 @@ const Body = () => {
           }}
         />
         <button
+          data-testid="searchBtn"
           className="w-40 text-lg border border-red-500 border-l-0 h-10 focus:outline-none bg-red-400 transition ease-in-out duration-500  hover:bg-red-600 "
           onClick={() => {
             const data = filterData(inputValue, allRestaurantMenu);
@@ -41,7 +43,10 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="relative p-20 flex flex-wrap justify-evenly gap-x-2">
+      <div
+        data-testid="restaurant-list"
+        className="relative p-20 flex flex-wrap justify-evenly gap-x-2"
+      >
         <h1 className="absolute top-0 text-center m-2 text-5xl text-red-600 font-bold">
           All Restaurants
         </h1>

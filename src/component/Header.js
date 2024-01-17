@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import useOnline from "../utils/useOnline";
 
 const Title = () => {
   return (
@@ -20,7 +21,7 @@ const Title = () => {
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { user } = useContext(UserContext);
-
+  const isOnline = useOnline();
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems);
   return (
@@ -44,12 +45,17 @@ const Header = () => {
             <li className="px-2 transition-colors hover:text-red-600 ease-in-out duration-1000">
               <Link to="/instamart">Instamart </Link>
             </li>
-            <li className="px-2 transition-colors hover:text-red-600 ease-in-out duration-700">
-              <Link to="/cart">cart-{cartItems.length}</Link>
+            <li className="px-2 transition-colors  hover:text-red-600 ease-in-out duration-700">
+              <Link data-testid="cart" to="/cart">
+                cart-{cartItems.length}
+              </Link>
             </li>
           </ul>
         </div>
-        <div>{user.name}</div>
+        <div className="flex">
+          {user.name}
+          <h1 data-testid="onlineStatus">{isOnline ? " 🟢 " : " 🔴 "}</h1>
+        </div>
         {isLoggedIn ? (
           <button onClick={() => setIsLoggedIn(false)}>Logout</button>
         ) : (
