@@ -19,7 +19,7 @@ const MenuInfoCart = ({ id, name, category, imageId, price, description }) => {
         <h4>Prize {price}</h4>
         <h1>Description : {(description = description.substring(0, 80))}</h1>
         <button
-          className="w-4/6 h-auto px-5 py-2 my-5 mx-auto bg-red-500 rounded-full"
+          className="w-4/6 h-auto px-5 py-2 my-5 mx-auto bg-red-400 rounded-full transition ease-out hover:bg-red-600 duration-300"
           onClick={() => {
             handleRemoveCart(id);
           }}

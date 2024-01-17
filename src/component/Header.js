@@ -8,6 +8,7 @@ const Title = () => {
   return (
     <Link to="/">
       <img
+        data-testid="logo"
         className="w-32"
         alt="logo"
         src="https://www.graphicdesk.in/images/client/logo8.png"

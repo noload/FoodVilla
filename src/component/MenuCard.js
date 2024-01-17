@@ -10,8 +10,8 @@ const MenuCard = ({ info }) => {
   const dispatch = useDispatch();
   let length = 20;
   const handleAddItem = (info) => {
-    alert("item added");
     dispatch(addItem(info));
+    confirm("Item Added Successfully");
   };
 
   let { id, name, category, imageId } = info;
@@ -36,8 +36,12 @@ const MenuCard = ({ info }) => {
           <h1>category : {(category = category.substring(0, 20))}</h1>
         </div>
         <button
-          className="w-12 h-12 text-4xl rounded-full flex justify-center mx-1 bg-red-500 transition ease-in-out hover:bg-red-600  duration-300"
-          onClick={() => handleAddItem(info)}
+          className="w-12 h-12 text-4xl rounded-full text-white flex justify-center mx-1 bg-red-500 transition ease-in-out  duration-300 hover:bg-white hover:border border-red-500 hover:text-red-500"
+          onClick={(e) => {
+            handleAddItem(info);
+            e.target.className =
+              "w-12 h-12 text-4xl rounded-full text-white flex justify-center mx-1 bg-green-500 transition ease-in-out  duration-300 hover:bg-white hover:border border-red-500 hover:text-red-500";
+          }}
         >
           +
         </button>
