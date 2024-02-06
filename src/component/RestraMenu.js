@@ -42,7 +42,10 @@ const RestraMenu = () => {
             <h2 className="text-red-500 text-center text-2xl font-bold">
               Menu Items
             </h2>
-            <ul className="flex flex-wrap justify-around">
+            <ul
+              data-testid="menuItem"
+              className="flex flex-wrap justify-around"
+            >
               {menuItems.map((item) => {
                 const itemsCard = item.card.card.itemCards;
                 if (itemsCard) {

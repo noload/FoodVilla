@@ -14,9 +14,8 @@ test("logo should load on rendering header", () => {
     </StaticRouter>
   );
   //Check if logo is loader
-  console.log(header);
+
   const logo = header.getAllByTestId("logo");
-  console.log(logo);
 
   expect(logo[0].src).toBe(
     "https://www.graphicdesk.in/images/client/logo8.png"

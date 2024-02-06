@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
@@ -31,24 +31,69 @@ const Header = () => {
         <div>
           <ul className="flex ">
             <li className="px-2 transition-colors hover:text-red-600 ease-in-out duration-1000">
-              <Link to="/">Home </Link>
+              <NavLink
+                style={(e) => {
+                  return {
+                    color: e.isActive ? "red" : "",
+                  };
+                }}
+                to="/"
+              >
+                Home
+              </NavLink>
             </li>
 
             <li className="px-2 transition-colors hover:text-red-600 ease-in-out duration-1000 ">
-              <Link to="/about">About </Link>
+              <NavLink
+                style={(e) => {
+                  return {
+                    color: e.isActive ? "red" : "",
+                  };
+                }}
+                to="/about"
+              >
+                About{" "}
+              </NavLink>
             </li>
 
             <li className="px-2 transition-colors hover:text-red-600 ease-in-out duration-1000">
-              <Link to="/contact">Contact</Link>
+              <NavLink
+                style={(e) => {
+                  return {
+                    color: e.isActive ? "red" : "",
+                  };
+                }}
+                to="/contact"
+              >
+                Contact
+              </NavLink>
             </li>
 
             <li className="px-2 transition-colors hover:text-red-600 ease-in-out duration-1000">
-              <Link to="/instamart">Instamart </Link>
+              <NavLink
+                style={(e) => {
+                  return {
+                    color: e.isActive ? "red" : "",
+                  };
+                }}
+                to="/instamart"
+              >
+                Instamart{" "}
+              </NavLink>
             </li>
             <li className="px-2 transition-colors  hover:text-red-600 ease-in-out duration-700">
-              <Link data-testid="cart" to="/cart">
+              <NavLink
+                data-testid="cart"
+                to="/cart"
+                className={(e) => {
+                  return [
+                    e.isActive ? "text-blue-700" : "",
+                    e.isActive ? "font-extrabold" : "",
+                  ].join(" ");
+                }}
+              >
                 cart-{cartItems.length}
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>

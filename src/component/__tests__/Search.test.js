@@ -3,7 +3,7 @@ import Body from "../Body";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router-dom/server";
 import store from "../../utils/store";
-import { RestaurantData } from "../../mocks/data";
+import { RestaurantData } from "../../mocks/RestaurantData";
 import "@testing-library/jest-dom";
 //mock of fetch for test case
 global.fetch = jest.fn(() => {
